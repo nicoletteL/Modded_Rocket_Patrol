@@ -20,6 +20,12 @@ game.settings = {
 };
 /* Points Breakdown
 
+Project Details:
+  Name: Nicolette Antisdel
+  Modded Rocket Patrol
+  4/15/2021
+  Took aproximately 10 hours
+
 Create new artwork for all of the in-game assets (rocket, spaceships, explosion) (20) 
 - I created and added new artwork for the rocket, ships, and the explosion. 
   The ships are now a different shape and purple, the rocket is blue, purple, and white,
