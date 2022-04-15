@@ -54,10 +54,19 @@ class Play extends Phaser.Scene {
      // display score
     let scoreConfig = {
       fontFamily: 'Courier',
-      fontSize: '28px',
+      fontSize: '26px',
       color: '#FFFFFF',
       align: 'left',
       fixedWidth: 200
+    }
+
+    // display timer
+    let timerConfig = {
+      fontFamily: 'Courier',
+      fontSize: '28px',
+      color: '#FFFFFF',
+      align: 'center',
+      fixedWidth: 100
     }
     this.scoreLeft = this.add.text(borderUISize, borderUISize, "Score: ".concat(this.p1Score), scoreConfig);
   
@@ -72,6 +81,8 @@ class Play extends Phaser.Scene {
         scoreConfig).setOrigin(0.5);
       this.gameOver = true;
       }, null, this);
+
+    this.timer = this.add.text(game.config.width/2, borderPadding*2, game.settings.gameTimer/1000, timerConfig).setOrigin(0.5, 0);
   }
 
   update() {
@@ -85,6 +96,7 @@ class Play extends Phaser.Scene {
     }
 
     this.starfield.tilePositionX -= 2;
+    this.timer.text = Math.round((this.clock.delay - this.clock.elapsed) / 1000 );
 
     if (!this.gameOver) {
       this.p1Rocket.update();
@@ -108,6 +120,11 @@ class Play extends Phaser.Scene {
       this.p1Rocket.reset();
       this.shipExplode(this.ship01);
     }
+  }
+
+  updateTimer() {
+    this.timeRemaining--;
+    this.timerCenter.text = this.timeRemaining;
   }
 
   checkCollision(rocket, ship) {
