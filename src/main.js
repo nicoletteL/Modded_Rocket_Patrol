@@ -4,7 +4,7 @@ let config = {
   height: 480,
   scene: [ Menu, Play ]
 }
-console.log("test");
+console.log("test2");
 let game = new Phaser.Game(config);
 
 // set UI sizes
