@@ -4,7 +4,6 @@ let config = {
   height: 480,
   scene: [ Menu, Play ]
 }
-console.log("test2");
 let game = new Phaser.Game(config);
 
 // set UI sizes
@@ -14,7 +13,11 @@ let borderPadding = borderUISize / 3;
 // reserve keyboard vars
 let keyF, keyR, keyLEFT, keyRIGHT, keyA, keyD;
 
-
+game.settings = {
+  playerMode: 1,
+  whichPlayer: 1,
+  highscore: 0,
+};
 /* Points Breakdown
 
 Create new artwork for all of the in-game assets (rocket, spaceships, explosion) (20) 
@@ -40,5 +43,6 @@ Implement an alternating two-player mode (20)
 Implement the speed increase that happens after 30 seconds in the original game (5)
 - I increased the spaceship's speed by 2 halfway through the game.
 
-
+Track a high score that persists across scenes and display it in the UI (5)
+- Tracks a single highscore across both difficulty modes (by restarting a game and going back to menu)
 */

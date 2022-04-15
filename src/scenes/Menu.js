@@ -17,10 +17,6 @@ class Menu extends Phaser.Scene {
   keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
   keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
 
-  game.settings = {
-    playerMode: 1,
-    whichPlayer: 1,
-  };
 
   // menu text configuration
     let menuConfig = {
@@ -53,12 +49,10 @@ class Menu extends Phaser.Scene {
 
     if (Phaser.Input.Keyboard.JustDown(keyA)) {
       game.settings.playerMode = 1;
-      console.log(game.settings.playerMode);
     }
 
     if (Phaser.Input.Keyboard.JustDown(keyD)) {
       game.settings.playerMode = 2;
-      console.log(game.settings.playerMode);
     }
 
     if (Phaser.Input.Keyboard.JustDown(keyLEFT)) {

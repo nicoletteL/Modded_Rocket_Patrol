@@ -90,8 +90,6 @@ class Play extends Phaser.Scene {
       fixedWidth: 100
     }
 
-    this.scoreLeft = this.add.text(borderUISize, borderUISize, "Score: ".concat(this.p1Score), scoreConfig);
-    
     if (game.settings.playerMode == 2) {
       if (game.settings.whichPlayer == 1) {
         this.player = this.add.text(borderUISize*15, borderUISize, "Player 1", scoreConfig);
@@ -111,22 +109,25 @@ class Play extends Phaser.Scene {
       this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or <- for Menu',
         scoreConfig).setOrigin(0.5);
       this.gameOver = true;
+
+      if (this.p1Score > game.settings.highscore) {
+        game.settings.highscore = this.p1Score;
+      }
       }, null, this);
 
-      this.clock2 = this.time.delayedCall(game.settings.gameTimer/2, () => {
-        this.ship01.moveSpeed += 2;
-        this.ship02.moveSpeed += 2;
-        this.ship03.moveSpeed += 2;
-        }, null, this);
+    this.clock2 = this.time.delayedCall(game.settings.gameTimer/2, () => {
+      this.ship01.moveSpeed += 2;
+      this.ship02.moveSpeed += 2;
+      this.ship03.moveSpeed += 2;
+    }, null, this);
 
+    this.scoreLeft = this.add.text(borderUISize, borderUISize, "Score: ".concat(this.p1Score), scoreConfig);
+    this.highscoreLeft = this.add.text(borderUISize, 0, "Highscore: ".concat(game.settings.highscore), scoreConfig);
     this.timer = this.add.text(game.config.width/2, borderPadding*2, game.settings.gameTimer/1000, timerConfig).setOrigin(0.5, 0);
 
-    console.log(game.settings.whichPlayer);
   }
 
   update() {
-  //  console.log(this.gameOver);
-
     if (this.gameOver && game.settings.playerMode == 2 && game.settings.whichPlayer == 1) {
       game.settings.whichPlayer = 2;
       this.scene.restart();
