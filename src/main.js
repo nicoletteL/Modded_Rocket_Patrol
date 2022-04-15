@@ -37,5 +37,8 @@ Implement an alternating two-player mode (20)
   Since they're aren't any lives in this game (once timer runs out the game is over),
   once player 1's timer has run out they're done and it's player 2's turn.
 
+Implement the speed increase that happens after 30 seconds in the original game (5)
+- I increased the spaceship's speed by 2 halfway through the game.
+
 
 */

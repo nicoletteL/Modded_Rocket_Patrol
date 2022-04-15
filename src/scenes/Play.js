@@ -90,15 +90,6 @@ class Play extends Phaser.Scene {
       fixedWidth: 100
     }
 
-    // display player
-    let playerConfig = {
-      fontFamily: 'Courier',
-      fontSize: '28px',
-      color: '#FFFFFF',
-      align: 'left',
-      fixedWidth: 100
-    }
-
     this.scoreLeft = this.add.text(borderUISize, borderUISize, "Score: ".concat(this.p1Score), scoreConfig);
     
     if (game.settings.playerMode == 2) {
@@ -121,6 +112,12 @@ class Play extends Phaser.Scene {
         scoreConfig).setOrigin(0.5);
       this.gameOver = true;
       }, null, this);
+
+      this.clock2 = this.time.delayedCall(game.settings.gameTimer/2, () => {
+        this.ship01.moveSpeed += 2;
+        this.ship02.moveSpeed += 2;
+        this.ship03.moveSpeed += 2;
+        }, null, this);
 
     this.timer = this.add.text(game.config.width/2, borderPadding*2, game.settings.gameTimer/1000, timerConfig).setOrigin(0.5, 0);
 
