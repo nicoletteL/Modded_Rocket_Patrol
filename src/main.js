@@ -12,7 +12,7 @@ let borderUISize = game.config.height / 15;
 let borderPadding = borderUISize / 3;
 
 // reserve keyboard vars
-let keyF, keyR, keyLEFT, keyRIGHT;
+let keyF, keyR, keyLEFT, keyRIGHT, keyA, keyD;
 
 
 /* Points Breakdown
@@ -31,6 +31,11 @@ Implement a new timing/scoring mechanism that adds time to the clock for success
 
 Use Phaser's particle emitter to create a particle explosion when the rocket hits the spaceship (20)
 - I added two particle emmiters to emit two different colored balls of light when a ship is hit.
+
+Implement an alternating two-player mode (20)
+- I created a two-player mode where once player 1's turn has ended it is player 2's turn.
+  Since they're aren't any lives in this game (once timer runs out the game is over),
+  once player 1's timer has run out they're done and it's player 2's turn.
 
 
 */

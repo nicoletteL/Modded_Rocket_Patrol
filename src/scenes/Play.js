@@ -89,8 +89,27 @@ class Play extends Phaser.Scene {
       align: 'center',
       fixedWidth: 100
     }
+
+    // display player
+    let playerConfig = {
+      fontFamily: 'Courier',
+      fontSize: '28px',
+      color: '#FFFFFF',
+      align: 'left',
+      fixedWidth: 100
+    }
+
     this.scoreLeft = this.add.text(borderUISize, borderUISize, "Score: ".concat(this.p1Score), scoreConfig);
-  
+    
+    if (game.settings.playerMode == 2) {
+      if (game.settings.whichPlayer == 1) {
+        this.player = this.add.text(borderUISize*15, borderUISize, "Player 1", scoreConfig);
+      
+      } else if (game.settings.whichPlayer == 2) {
+        this.player = this.add.text(borderUISize*15, borderUISize, "Player 2", scoreConfig);
+      }
+    }
+
     // GAME OVER flag
     this.gameOver = false;
 
@@ -104,9 +123,18 @@ class Play extends Phaser.Scene {
       }, null, this);
 
     this.timer = this.add.text(game.config.width/2, borderPadding*2, game.settings.gameTimer/1000, timerConfig).setOrigin(0.5, 0);
+
+    console.log(game.settings.whichPlayer);
   }
 
   update() {
+  //  console.log(this.gameOver);
+
+    if (this.gameOver && game.settings.playerMode == 2 && game.settings.whichPlayer == 1) {
+      game.settings.whichPlayer = 2;
+      this.scene.restart();
+    }
+
     // check input for restart
     if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
       this.scene.restart();
